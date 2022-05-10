@@ -2,7 +2,7 @@ version: '3'
 
 services:
   
-  service_rabbitmq:
+  service-rabbitmq:
     container_name: container-rabbitmq
     image: 'rabbitmq:3.10.0-management-alpine'
     ports:
@@ -12,7 +12,24 @@ services:
       - .docker/rabbitmq/data/:/var/lib/rabbitmq/
       - .docker/rabbitmq/log/:/var/log/rabbitmq  
     networks:
-      - network  
+      - network
 
+  service-smtp4dev:
+    container_name: container-smtp4dev
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      - '5000:80'
+      # Change the number before : to the port the SMTP server should be accessible on
+      - '25:25'
+      # Change the number before : to the port the IMAP server should be accessible on
+      - '143:143'
+    volumes:
+      - .docker/smtp4dev/data:/smtp4dev
+    environment:
+        - ServerOptions__HostName=smtp4de
+    networks:
+      - network    
+      
 networks:
   network: {}
