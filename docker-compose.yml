@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  
+  service_rabbitmq:
+    container_name: container-rabbitmq
+    image: 'rabbitmq:3.10.0-management-alpine'
+    ports:
+      - '5672:5672' # The standard AMQP protocol port
+      - '15672:15672' # HTTP management UI
+    volumes:
+      - .docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - .docker/rabbitmq/log/:/var/log/rabbitmq  
+    networks:
+      - network  
+
+networks:
+  network: {}
