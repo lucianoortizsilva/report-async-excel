@@ -23,7 +23,7 @@
 hs_err_pid*
 
 report-api/target
-report-api/.settings
-report-api/.classpath
-report-api/.factorypath
-report-api/.project
+report-api/*.settings
+report-api/*.classpath
+report-api/*.factorypath
+report-api/*.project
