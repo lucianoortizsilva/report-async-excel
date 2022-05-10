@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd  http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="202205101046" author="ortiz">
+		<createTable tableName="CATALOGO_NETFLIX">
+			<column name="show_id" type="int">
+				<constraints primaryKey="true" nullable="false" primaryKeyName="pkNetflix" />
+			</column>
+			<column name="type" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="title" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="director" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="cast" type="varchar(1000)">
+				<constraints nullable="false" />
+			</column>
+			<column name="country" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="date_added" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="release_year" type="NUMERIC">
+				<constraints nullable="false" />
+			</column>
+			<column name="rating" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="duration" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="listed_in" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+
+
+	<changeSet id="202205101047" author="ortiz" context="local" runOnChange="true">
+		<loadUpdateData tableName="CATALOGO_NETFLIX" file="db/changelog/netflix.csv" primaryKey="show_id" quotchar='&quot;' encoding="UTF-8" separator=",">
+			<column name="show_id" type="NUMERIC" />
+			<column name="type" type="STRING" />
+			<column name="title" type="STRING" />
+			<column name="director" type="STRING" />
+			<column name="cast" type="STRING" />
+			<column name="country" type="STRING" />
+			<column name="date_added" type="STRING" />
+			<column name="release_year" type="NUMERIC" />
+			<column name="rating" type="STRING" />
+			<column name="duration" type="STRING" />
+			<column name="listed_in" type="STRING" />
+			<column name="description" type="STRING" />
+		</loadUpdateData>
+	</changeSet>
+
+</databaseChangeLog>

@@ -27,3 +27,9 @@ report-api/*.settings
 report-api/*.classpath
 report-api/*.factorypath
 report-api/*.project
+
+report-generate/target
+report-generate/*.settings
+report-generate/*.classpath
+report-generate/*.factorypath
+report-generate/*.project
