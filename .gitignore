@@ -23,6 +23,7 @@
 hs_err_pid*
 
 report-api/target
+report-api/bin
 report-api/*.settings
 report-api/*.classpath
 report-api/*.factorypath
@@ -35,3 +36,4 @@ report-consumer/*.classpath
 report-consumer/*.factorypath
 report-consumer/*.project
 report-consumer/app.log
+report-consumer/bin
