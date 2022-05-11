@@ -43,17 +43,17 @@ public class CatalogoNetflixService {
 		if (CollectionUtils.isNotEmpty(catalogos)) {
 			for (final CatalogoNetflix catalogoNetflix : catalogos) {
 				final Column c0 = new Column(0, 7000, catalogoNetflix.getId().toString(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c1 = new Column(0, 7000, catalogoNetflix.getType(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c2 = new Column(0, 7000, catalogoNetflix.getTitle(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c3 = new Column(0, 7000, catalogoNetflix.getDirector(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c4 = new Column(0, 7000, catalogoNetflix.getCast(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c5 = new Column(0, 7000, catalogoNetflix.getCountry(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c6 = new Column(0, 7000, catalogoNetflix.getDateAdded(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c7 = new Column(0, 7000, catalogoNetflix.getReleaseYear().toString(),  Format.TEXT, HorizontalAlignment.CENTER);
-				final Column c8 = new Column(0, 7000, catalogoNetflix.getRating(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c9 = new Column(0, 7000, catalogoNetflix.getDuration(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c10 = new Column(0, 7000, catalogoNetflix.getListedIn(),  Format.TEXT, HorizontalAlignment.LEFT);
-				final Column c11 = new Column(0, 7000, catalogoNetflix.getDescription(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c1 = new Column(1, 7000, catalogoNetflix.getType(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c2 = new Column(2, 7000, catalogoNetflix.getTitle(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c3 = new Column(3, 7000, catalogoNetflix.getDirector(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c4 = new Column(4, 7000, catalogoNetflix.getCast(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c5 = new Column(5, 7000, catalogoNetflix.getCountry(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c6 = new Column(6, 7000, catalogoNetflix.getDateAdded(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c7 = new Column(7, 7000, catalogoNetflix.getReleaseYear().toString(),  Format.TEXT, HorizontalAlignment.CENTER);
+				final Column c8 = new Column(8, 7000, catalogoNetflix.getRating(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c9 = new Column(8, 7000, catalogoNetflix.getDuration(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c10 = new Column(10, 7000, catalogoNetflix.getListedIn(),  Format.TEXT, HorizontalAlignment.LEFT);
+				final Column c11 = new Column(11, 7000, catalogoNetflix.getDescription(),  Format.TEXT, HorizontalAlignment.LEFT);
 				final Line line = new Line(c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11);
 				lines.add(line);
 			}
