@@ -106,19 +106,46 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>2.5.6</version><!--$NO-MVN-MAN-VER$-->
+			<version>2.5.6</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<!-- email -->
 
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>localhost</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>localhost</spring.profiles.active>
+				<tag.version>${projects.version}</tag.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>docker</id>
+			<properties>
+				<spring.profiles.active>docker</spring.profiles.active>
+				<tag.version>${projects.version}</tag.version>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

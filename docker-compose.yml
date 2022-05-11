@@ -6,11 +6,29 @@ services:
     container_name: container-rabbitmq
     image: 'rabbitmq:3.10.0-management-alpine'
     ports:
-      - '5672:5672' # The standard AMQP protocol port
-      - '15672:15672' # HTTP management UI
+      - "5672:5672" # The standard AMQP protocol port
+      - "15672:15672" # HTTP management UI
     volumes:
       - .docker/rabbitmq/data/:/var/lib/rabbitmq/
       - .docker/rabbitmq/log/:/var/log/rabbitmq  
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    networks:
+      - network
+
+  service-report-consumer:
+    container_name: report-consumer-app
+    image: report-consumer-app:latest
+    build:
+      context: ./report-consumer
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
+    depends_on:
+      - service-rabbitmq
     networks:
       - network
       
