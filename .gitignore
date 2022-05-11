@@ -29,6 +29,7 @@ report-api/*.classpath
 report-api/*.factorypath
 report-api/*.project
 report-api/*app.log
+report-api/*.vscode
 
 report-consumer/target
 report-consumer/*.settings
@@ -36,4 +37,7 @@ report-consumer/*.classpath
 report-consumer/*.factorypath
 report-consumer/*.project
 report-consumer/*app.log
+report-consumer/*.vscode
 report-consumer/bin
+
+*.vscode

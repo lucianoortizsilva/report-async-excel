@@ -17,7 +17,21 @@ services:
       RABBITMQ_DEFAULT_VHOST: "/"
     networks:
       - network
-
+      
+  service-report-api:
+    container_name: report-api-app
+    image: report-api-app:latest
+    build:
+      context: ./report-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
+    depends_on:
+      - service-rabbitmq
+    networks:
+      - network
+      
   service-report-consumer:
     container_name: report-consumer-app
     image: report-consumer-app:latest
