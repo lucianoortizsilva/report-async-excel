@@ -22,15 +22,16 @@ public class RabbitMQConsumer {
 	private EmailService emailService;
 
 	@RabbitListener(queues = "QUEUE-REPORT")
-	public void x(final Report report) {
+	public void consumerQueue(final Report report) {
 		log.info("> Mensagem recebida da fila: QUEUE-REPORT");
 		try {
 			long inicio = System.currentTimeMillis();
 			log.info("> Gerando relatório");
 			final File file = this.service.generateFile(report.getReleaseYear());
 			long tempo = System.currentTimeMillis() - inicio;
-			log.info("> Tempo gasto EM milissegundos: {}", tempo);
+			log.info("> Tempo gasto em milissegundos: {}", tempo);
 			log.info("> Relatório gerado: {}", file.getName());
+			log.info("> Path: {}", file.getAbsoluteFile());
 			emailService.sendMailWithReport(report, file);
 		} catch (final Exception e) {
 			log.error(e.getMessage(), e);
