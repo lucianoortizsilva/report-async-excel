@@ -12,6 +12,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 import com.report.service.CatalogoNetflixService;
+import com.report.service.EmailService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +22,10 @@ public class RabbitMQConsumer {
 
 	@Autowired
 	private CatalogoNetflixService service;
-
+	
+	@Autowired
+	private EmailService emailService;
+	
 	@RabbitListener(queues = "QUEUE-REPORT")
 	public void x(final Report report) {
 		log.info("message received QUEUE-REPORT");
@@ -39,8 +43,9 @@ public class RabbitMQConsumer {
 			resource = new UrlResource(path.toUri());
 			final String filename = resource.getFilename();
 			System.out.println("Filename gerado: " + filename);
+			emailService.sendMailWithReport(report);
 		} catch (final Exception e) {
-			System.err.println("erroooooooooooo");
+			log.error(e.getMessage(), e);
 		}
 	}
 
