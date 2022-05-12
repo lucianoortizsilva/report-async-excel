@@ -43,7 +43,7 @@ services:
       context: ./report-consumer
       dockerfile: Dockerfile
     ports:
-      - "8081:8081"
+      - "8080:8080"
     command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
     depends_on:
       - service-rabbitmq

@@ -10,4 +10,4 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
-EXPOSE 8081
+EXPOSE 8080
