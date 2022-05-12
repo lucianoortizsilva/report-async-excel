@@ -49,27 +49,27 @@ func GenerateReportAsync(w http.ResponseWriter, r *http.Request) {
 	}
 	defer channelRabbitMQ.Close()
 
-	fmt.Println("6º Declarando QUEUE 'QUEUE-REPORT'")
-	_, erro = channelRabbitMQ.QueueDeclare(
-		"QUEUE-REPORT", // queue name
-		true,           // durable
-		false,          // auto delete
-		false,          // exclusive
-		false,          // no wait
-		nil,            // arguments
-	)
+	//fmt.Println("6º Declarando QUEUE 'QUEUE-REPORT'")
+	//_, erro = channelRabbitMQ.QueueDeclare(
+	//"QUEUE-REPORT", // queue name
+	//true,           // durable
+	//false,          // auto delete
+	//false,          // exclusive
+	//false,          // no wait
+	//nil,            // arguments
+	//)
 
-	if erro != nil {
-		panic(erro)
-	}
+	//if erro != nil {
+	//panic(erro)
+	//}
 
-	fmt.Println("7º Criando mensagem para publicar")
+	fmt.Println("6º Criando mensagem para publicar")
 	message := amqp.Publishing{
 		ContentType: "text/plain",
 		Body:        []byte(corpoRequest),
 	}
 
-	fmt.Println("8º Publicando mensagem")
+	fmt.Println("7º Publicando mensagem")
 	if erro := channelRabbitMQ.Publish(
 		"",             // exchange
 		"QUEUE-REPORT", // queue name
