@@ -15,6 +15,7 @@ COPY go.sum /app
 COPY /src /app/src
 COPY .env /app
 COPY main.go /app
+COPY entrypoint.sh /app
 
 #Para instalar os módulos Go em um diretório dentro da imagem
 RUN go mod download
@@ -26,7 +27,6 @@ RUN go build -o /report-api
 EXPOSE 5000
 
 #Informando qual arquivo executar ao iniciar im container
-CMD ["/report-api"]
-
+#CMD ["/report-api"], comentado para executar no entrypoint.sh
 # Comando para criar imagem:
 # docker build --tag report-api .
