@@ -41,3 +41,4 @@ report-consumer/*.vscode
 report-consumer/bin
 
 *.vscode
+*.docker

@@ -25,8 +25,11 @@ services:
       context: ./report-api
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-    command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
+      - "5000:5000"
+    env_file:
+      - ./report-api/.env
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@container-rabbitmq:5672/  
     depends_on:
       - service-rabbitmq
     networks:
