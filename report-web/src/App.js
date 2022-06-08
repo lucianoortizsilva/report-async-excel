@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import { Button, Container, Navbar } from 'react-bootstrap';
 import './App.css';
+import logo from './assets/logo.svg'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Topo/>
     </div>
   );
+}
+
+const Topo = () =>{
+  return(
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand>
+          <img src={logo} className="d-inline-block align-top"/>
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
+  )
 }
 
 export default App;
