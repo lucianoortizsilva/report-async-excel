@@ -40,5 +40,16 @@ report-consumer/*app.log
 report-consumer/*.vscode
 report-consumer/bin
 
-*.vscode
-*.docker
+report-web/node_modules
+report-web/.pnp
+report-web/.pnp.js
+report-web/coverage
+report-web/build
+report-web/.DS_Store
+report-web/.env.local
+report-web/.env.development.local
+report-web/.env.test.local
+report-web/.env.production.local
+report-web/npm-debug.log*
+report-web/yarn-debug.log*
+report-web/yarn-error.log*
