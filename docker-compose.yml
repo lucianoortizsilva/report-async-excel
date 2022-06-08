@@ -49,6 +49,20 @@ services:
       - service-rabbitmq
     networks:
       - network
+
+  service-report-web:
+    container_name: report-web-app
+    image: report-web-app:latest
+    build: 
+        context: ./report-web
+        dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: npm run start
+    depends_on:
+      - service-report-api    
+    networks:
+      - network    
       
 networks:
   network: {}

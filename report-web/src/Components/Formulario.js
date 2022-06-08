@@ -63,9 +63,11 @@ class Formulario extends Component{
         let form = this.state.formulario;                
         form[event.target.name] = event.target.value;        
         this.setState({formulario:form})
-        console.log('Email...: ' + form.email);        
-        console.log('Ano.....: ' + form.ano);        
-        console.log('Enviando .....');                
+        if(event.type === 'submit'){
+            console.log('Email...: ' + form.email);        
+            console.log('Ano.....: ' + form.ano);
+            alert('Dados enviados com sucesso!');
+        }
     }
 
 }

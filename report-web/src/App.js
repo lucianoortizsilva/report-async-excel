@@ -1,6 +1,6 @@
 import './App.css';
-import Topo from './Components/Home/Topo';
-import Formulario from './Components/Home/Formulario'
+import Topo from './Components/Topo';
+import Formulario from './Components/Formulario'
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import netflix from '../../assets/netflix.svg'
+import netflix from '../assets/netflix.svg'
 import './Home.css'
 
 class Topo extends Component{

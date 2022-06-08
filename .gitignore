@@ -53,3 +53,5 @@ report-web/.env.production.local
 report-web/npm-debug.log*
 report-web/yarn-debug.log*
 report-web/yarn-error.log*
+
+.docker
