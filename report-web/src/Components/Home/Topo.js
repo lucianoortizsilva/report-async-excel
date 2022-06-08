@@ -1,6 +1,7 @@
 import React,{Component} from "react";
-import { Container, Navbar } from 'react-bootstrap';
-import logo from '../../assets/logo.svg'
+import { Container, Navbar, Nav } from 'react-bootstrap';
+import netflix from '../../assets/netflix.svg'
+import './Home.css'
 
 class Topo extends Component{
     render(){
@@ -9,8 +10,13 @@ class Topo extends Component{
                 <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand>
-                    <img src={logo} className="d-inline-block align-top"/>
+                    <img src={netflix} className="d-inline-block align-top" height="50" width="100"/>
                     </Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Navbar.Text className="mt-1">
+                            <h5>Relatório de Séries & Filmes</h5>                            
+                        </Navbar.Text>                    
+                    </Nav>
                 </Container>
                 </Navbar>                
             </div>
