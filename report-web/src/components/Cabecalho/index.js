@@ -1,9 +1,9 @@
 import React,{Component} from "react";
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import netflix from '../assets/netflix.svg'
-import './Home.css'
+import netflix from '../../assets/netflix.svg'
+import '../Cabecalho/style.css'
 
-class Topo extends Component{
+class Cabecalho extends Component{
     render(){
         return (
             <div>
@@ -24,4 +24,4 @@ class Topo extends Component{
     }
 }
 
-export default Topo;
+export default Cabecalho;
