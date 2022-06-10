@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
 
