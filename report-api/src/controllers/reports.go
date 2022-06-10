@@ -14,27 +14,27 @@ import (
 
 func GenerateReportAsync(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("1º Convertendo requisicao em []bytes")
+	fmt.Println("PASSO 1 - Convertendo requisicao em []bytes")
 	corpoRequest, erro := ioutil.ReadAll(r.Body)
 	if erro != nil {
 		respostas.Erro(w, http.StatusUnprocessableEntity, erro)
 		return
 	}
 
-	fmt.Println("2º Convertendo []bytes to struct")
+	fmt.Println("PASSO 2 - Convertendo []bytes to struct")
 	var report modelos.Report
 	if erro = json.Unmarshal(corpoRequest, &report); erro != nil {
 		respostas.Erro(w, http.StatusBadRequest, erro)
 		return
 	}
 
-	fmt.Println("3º Validando campos obrigatorios")
+	fmt.Println("PASSO 3 - Validando campos obrigatorios")
 	if erro = report.Preparar(); erro != nil {
 		respostas.Erro(w, http.StatusBadRequest, erro)
 		return
 	}
 
-	fmt.Println("4º Criando conexao com RabbitMQ")
+	fmt.Println("PASSO 4 - Criando conexao com RabbitMQ")
 	fmt.Println(config.RabbitMQUrl)
 	connectRabbitMQ, erro := amqp.Dial(config.RabbitMQUrl)
 	if erro != nil {
@@ -42,14 +42,14 @@ func GenerateReportAsync(w http.ResponseWriter, r *http.Request) {
 	}
 	defer connectRabbitMQ.Close()
 
-	fmt.Println("5º Criando instancia channel RabbitMQ")
+	fmt.Println("PASSO 5 - Criando instancia channel RabbitMQ")
 	channelRabbitMQ, erro := connectRabbitMQ.Channel()
 	if erro != nil {
 		panic(erro)
 	}
 	defer channelRabbitMQ.Close()
 
-	fmt.Println("6º Declarando QUEUE 'QUEUE-REPORT'")
+	fmt.Println("PASSO 6 - Declarando QUEUE 'QUEUE-REPORT'")
 	_, erro = channelRabbitMQ.QueueDeclare(
 		"QUEUE-REPORT", // queue name
 		false,          // durable
@@ -63,13 +63,13 @@ func GenerateReportAsync(w http.ResponseWriter, r *http.Request) {
 	//panic(erro)
 	//}
 
-	fmt.Println("7º Criando mensagem para publicar")
+	fmt.Println("PASSO 7 - Criando mensagem para publicar")
 	message := amqp.Publishing{
 		ContentType: "application/json",
 		Body:        []byte(corpoRequest),
 	}
 
-	fmt.Println("8º Publicando mensagem")
+	fmt.Println("PASSO 8 - Publicando mensagem")
 	if erro := channelRabbitMQ.Publish(
 		"",             // exchange
 		"QUEUE-REPORT", // queue name

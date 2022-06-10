@@ -1,16 +1,55 @@
 import React, {useState} from 'react';
 import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { toast } from 'react-toastify';
+import api from '../../services/api';
+
 
 function Home() {
-
+    
     const anos = ['2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015'];
     const [isLoading, setLoading] = useState(false);
     const [ano, setAno] = useState('');
     const [email, setEmail] = useState('');    
     const [labelBotao, setLabelBotao] = useState('Enviar');
     const [spinnerBotao, setSpinnerBotao] = useState('visually-hidden');
-    
+    const [requestBody, setRequestBody] = useState({releaseYear: 0, emailTo: ''});
+
+    const enviar = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        setSpinnerBotao('');
+        setLabelBotao('Enviando');        
+        requestBody.emailTo = email;
+        requestBody.releaseYear = parseInt(ano, 10);
+        const body = JSON.stringify(requestBody);
+        const headers = [
+            {"Access-Control-Allow-Origin": "*"}, 
+            {"Access-Control-Allow-Headers": "access-control-allow-origin, access-control-allow-headers"}
+        ]
+        api.post(`/download/async/excel`, body, headers)
+        .then(response => {
+            console.log(response);
+            toast.success(response.data);
+            setRequestBody({})
+            setEmail('');
+            setAno('');
+        })
+        .catch(error =>{
+            console.log(error);
+            if(error.code = 'ERR_NETWORK'){
+                toast.error("Serviço temporariamente indisponível");
+            } else{
+                toast.error(error.response.data.erro);
+            }
+        }).finally(()=>{
+            setLoading(false);
+            setSpinnerBotao('visually-hidden');
+            setLabelBotao('Enviar');
+        });
+    }
+
+
+
     return(
         <div className="mt-5">
             <Container>
@@ -21,7 +60,9 @@ function Home() {
                         <Form.Control name="email" 
                                         type="email" 
                                         value={email}
-                                        onChange={(e)=> setEmail(e.target.value)}
+                                        disabled={isLoading}
+                                        readOnly={isLoading}
+                                        onChange={event => setEmail(event.target.value)}
                                         placeholder="Informe o e-mail para enviar o relatório" 
                                         required/>
                     </Form.Group>
@@ -30,7 +71,8 @@ function Home() {
                         <Form.Label className="fw-bold" htmlFor="ano">Ano de Lançamento</Form.Label>
                         <Form.Select name="ano" 
                                         value={ano}
-                                        onChange={(e)=> setAno(e.target.value)}
+                                        disabled={isLoading}
+                                        onChange={event => setAno(event.target.value)}
                                         placeholder="Selecione ..."
                                         required>
 
@@ -61,14 +103,6 @@ function Home() {
         </div>
     )
 
-    function enviar(){
-        setLoading(true);
-        setSpinnerBotao('');
-        setLabelBotao('Enviando');
-        console.log('Email...: ' + email);
-        console.log('Ano.....: ' + ano);        
-        toast.success("Feitooooooooo!");
-    }
-
 }
+
 export default Home;
