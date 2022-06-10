@@ -3,7 +3,6 @@ import Cabecalho from './components/Cabecalho'
 import Home from './pages/Home';
 import Erro from './pages/Erro';
 
-
 function RoutesApp(){
   return(
     <BrowserRouter>
