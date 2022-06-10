@@ -59,9 +59,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - ./report-web/.env
-    environment:
-      REACT_APP_API_CATALOGO_NETFLIX: http://report-api-app:5000/catalogo-netflix
+      - ./report-web/.env    
     command: npm run start
     depends_on:
       - service-report-api    
