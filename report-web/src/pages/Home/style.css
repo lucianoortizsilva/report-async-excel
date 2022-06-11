@@ -1,0 +1,9 @@
+.formulario{
+  align-items: center;
+  align-content: center;
+}
+
+.btn-enviar {
+    margin-top: 30px;
+    min-width: 100%;
+}

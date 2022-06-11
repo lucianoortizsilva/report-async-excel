@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { Button, Container, Form, Spinner } from "react-bootstrap";
+import { Button, Container, Form, Spinner, Row, Col } from "react-bootstrap";
 import { toast } from 'react-toastify';
+import Carrosel from '../../components/Carrosel';
 import api from '../../services/api';
-
+import '../Home/style.css';
 
 function Home() {
     
@@ -14,6 +15,8 @@ function Home() {
     const [spinnerBotao, setSpinnerBotao] = useState('visually-hidden');
     const [requestBody, setRequestBody] = useState({releaseYear: 0, emailTo: ''});
 
+
+    
     const enviar = (event) => {
         event.preventDefault();
         setLoading(true);
@@ -53,29 +56,34 @@ function Home() {
     return(
         <div className="mt-5">
             <Container>
-                <Form className="mb-8" onSubmit={enviar}>
-                    
-                    <Form.Group className="mb-3" controlId="email">
-                        <Form.Label className="fw-bold">E-mail</Form.Label>
-                        <Form.Control name="email" 
-                                        type="email" 
-                                        value={email}
-                                        disabled={isLoading}
-                                        readOnly={isLoading}
-                                        onChange={event => setEmail(event.target.value)}
-                                        placeholder="Informe o e-mail para enviar o relatório" 
-                                        required/>
-                    </Form.Group>
-                    
+                
+                <Carrosel interval={2000}/>
+                
+                <Form className="formulario md-2" onSubmit={enviar}>
                     <Form.Group className="mb-3">
-                        <Form.Label className="fw-bold" htmlFor="ano">Ano de Lançamento</Form.Label>
-                        <Form.Select name="ano" 
-                                        value={ano}
-                                        disabled={isLoading}
-                                        onChange={event => setAno(event.target.value)}
-                                        placeholder="Selecione ..."
-                                        required>
+                        <Row>
+                          <Col lg={1}>&nbsp;</Col>
 
+                          <Col lg={4}>
+                            <Form.Label className="fw-bold" htmlFor="email">E-mail</Form.Label>
+                            <Form.Control name="email"
+                                          type="email" 
+                                          value={email}
+                                          disabled={isLoading}
+                                          readOnly={isLoading}
+                                          onChange={event => setEmail(event.target.value)}
+                                          placeholder="Informe o e-mail para enviar o relatório" 
+                                          required/>
+                          </Col>                
+                          
+                          <Col lg={3}>
+                            <Form.Label className="fw-bold" htmlFor="ano">Ano</Form.Label>
+                            <Form.Select name="ano" 
+                                         value={ano}
+                                         disabled={isLoading}
+                                         onChange={event => setAno(event.target.value)}
+                                         placeholder="Selecione ..."
+                                         required>
                             <option value="" disabled>Selecione ...</option>
                             {
                                 anos.map((obj) => {
@@ -86,18 +94,23 @@ function Home() {
                                     )
                                 })
                             }                               
-                        </Form.Select>
+                            </Form.Select>
+                          </Col>
+                          
+                          <Col lg={3}>
+                            <Button className="btn-enviar" variant="primary" type='submit' disabled={isLoading}>
+                              <Spinner as="span" 
+                                       variant='danger' 
+                                       animation="grow" 
+                                       size="sm" 
+                                       role="status"
+                                       aria-hidden="false"
+                                       className={spinnerBotao}
+                                       disabled={isLoading}/> {labelBotao}
+                            </Button>
+                          </Col>
+                        </Row>                
                     </Form.Group>
-                    <Button variant="primary" type='submit' disabled={isLoading}>
-                        <Spinner as="span" 
-                                variant='danger' 
-                                animation="grow" 
-                                size="sm" 
-                                role="status"
-                                aria-hidden="false"
-                                className={spinnerBotao}
-                                disabled={isLoading}/> {labelBotao}
-                    </Button>
                 </Form>
             </Container>
         </div>
