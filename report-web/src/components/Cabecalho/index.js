@@ -1,10 +1,8 @@
-import React,{Component} from "react";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import netflix from '../../assets/netflix.svg'
 import '../Cabecalho/style.css'
 
-class Cabecalho extends Component{
-    render(){
+function Cabecalho(){
         return (
             <div>
                 <Navbar bg="dark" variant="dark">
@@ -21,7 +19,6 @@ class Cabecalho extends Component{
                 </Navbar>                
             </div>
         )
-    }
 }
 
 export default Cabecalho;

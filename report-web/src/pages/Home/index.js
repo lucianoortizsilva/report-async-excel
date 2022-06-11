@@ -55,9 +55,9 @@ function Home() {
 
     return(
         <div className="mt-5">
-            <Container>
+            <Container className='container'>
                 
-                <Carrosel interval={2000}/>
+                <Carrosel/>
                 
                 <Form className="formulario md-2" onSubmit={enviar}>
                     <Form.Group className="mb-3">
@@ -98,7 +98,7 @@ function Home() {
                           </Col>
                           
                           <Col lg={3}>
-                            <Button className="btn-enviar" variant="primary" type='submit' disabled={isLoading}>
+                            <Button variant="danger" type='submit' disabled={isLoading}>
                               <Spinner as="span" 
                                        variant='danger' 
                                        animation="grow" 

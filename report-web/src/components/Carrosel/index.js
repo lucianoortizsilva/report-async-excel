@@ -22,7 +22,7 @@ function Carrosel() {
 
     return (
         <div className="carrosel">
-			<Carousel activeIndex={index} onSelect={selecionado}>
+			<Carousel activeIndex={index} onSelect={selecionado} interval={3000}>
 			  <Carousel.Item>
 				<img src={`${IMG_1}`} className="d-block w-100"/>
 			  </Carousel.Item>
