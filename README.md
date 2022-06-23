@@ -10,7 +10,7 @@
 Uma aplicação que disponibiliza uma API para gerar um relatóro EXCEL de forma assíncrona, que exibe dados FAKE do catalogo Netflix.
 
 ### Arquitetura
-1º O projeto `report-web` consome uma APi do projeto report-api;\
+1º O projeto `report-web`, que faz uma chamada para uma APi no projeto report-api;\
 2º O projeto `report-api` fornece uma API para gerar um relatório;\
 3º Tem um container-rabbitmq, que irá guardar a mensagem na fila QUEUE-REPORT recebidas da API;\
 4º O projeto `report-consumer`, consome mensagens da fila QUEUE-REPORT, gera o relatório e envia para o e-mail;
