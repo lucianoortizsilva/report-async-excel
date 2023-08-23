@@ -44,7 +44,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    command: ./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
+    environment:
+      ENV: docker
+    entrypoint: /opt/bin/entrypoint.sh
     depends_on:
       - service-rabbitmq
     networks:
