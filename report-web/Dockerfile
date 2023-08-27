@@ -1,5 +1,5 @@
 # get the base node image
-FROM node:alpine as builder
+FROM node:current-alpine3.18@sha256:254989045b0555ee411cd8fe7bd8e3ae306fef34b4c9d5dfd020bdda86cdad97
 
 # set the working dir for container
 WORKDIR /app
