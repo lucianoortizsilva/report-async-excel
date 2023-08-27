@@ -1,3 +1,3 @@
-* text eol=LF
 *.sh text eol=LF
 *.yml text eol=LF
+Dockerfile text eol=LF
